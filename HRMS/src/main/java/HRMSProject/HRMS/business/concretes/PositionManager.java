@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import HRMSProject.HRMS.business.abstracts.PositionService;
+import HRMSProject.HRMS.core.utilities.results.DataResult;
+import HRMSProject.HRMS.core.utilities.results.SuccessDataResult;
 import HRMSProject.HRMS.dataAccess.abstracts.PositionDao;
 import HRMSProject.HRMS.entities.concrete.Position;
 
@@ -18,8 +20,8 @@ public class PositionManager implements PositionService {
 		this._positionDao = _positionDao;
 	}
 	@Override
-	public List<Position> getAll() {
-		return this._positionDao.findAll();
+	public DataResult<List<Position>> getAll() {
+		return new SuccessDataResult<List<Position>>(this._positionDao.findAll());
 	}
 
 }
