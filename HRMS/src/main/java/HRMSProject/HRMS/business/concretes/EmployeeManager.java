@@ -1,12 +1,16 @@
 package HRMSProject.HRMS.business.concretes;
 
-import java.rmi.RemoteException;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import HRMSProject.HRMS.business.abstracts.EmployeeService;
+import HRMSProject.HRMS.business.abstracts.EmployeeValidateService;
+import HRMSProject.HRMS.core.abstracts.EmailCheckService;
+import HRMSProject.HRMS.core.abstracts.EmailVerificationService;
+import HRMSProject.HRMS.core.abstracts.EmployeeCheckService;
 import HRMSProject.HRMS.core.utilities.results.DataResult;
 import HRMSProject.HRMS.core.utilities.results.ErrorResult;
 import HRMSProject.HRMS.core.utilities.results.Result;
@@ -14,16 +18,24 @@ import HRMSProject.HRMS.core.utilities.results.SuccessDataResult;
 import HRMSProject.HRMS.core.utilities.results.SuccessResult;
 import HRMSProject.HRMS.dataAccess.abstracts.EmployeeDao;
 import HRMSProject.HRMS.entities.concrete.Employee;
-import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
+
 
 @Service
 public class EmployeeManager implements EmployeeService{
 
 	private EmployeeDao _employeeDao;
+	private EmployeeValidateService _employeeValidateService;
+	private EmailVerificationService _emailVerificationService;
+	private EmployeeCheckService _employeeCheckService;
+	private EmailCheckService _emailCheckService;
 	@Autowired
-	public EmployeeManager(EmployeeDao _employeeDao) {
+	public EmployeeManager(EmployeeDao _employeeDao,EmployeeValidateService _employeeValidateService,EmailVerificationService _emailVerificationService,EmployeeCheckService _employeeCheckService, EmailCheckService _emailCheckService) {
 		super();
 		this._employeeDao = _employeeDao;
+		this._employeeValidateService=_employeeValidateService;
+		this._emailVerificationService=_emailVerificationService;
+		this._employeeCheckService=_employeeCheckService;
+		this._emailCheckService=_emailCheckService;
 	}
 	@Override
 	public DataResult<List<Employee>> getAll() {
@@ -32,23 +44,35 @@ public class EmployeeManager implements EmployeeService{
 	}
 	@Override
 	public Result add(Employee employee) {
-		// TODO Auto-generated method stub
-		KPSPublicSoapProxy kpsPublic=new KPSPublicSoapProxy();
-		try {
-			if	(kpsPublic.TCKimlikNoDogrula( 
-					Long.parseLong(employee.getNationalIdentity()),
-					employee.getEmployeeName(), 
-					employee.getEmployeeSurname(),
-					Integer.parseInt(employee.getYearOfBirth()))==true)
-				{
-					this._employeeDao.save(employee);
-		            return new SuccessResult();
-				}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			return new ErrorResult(e.getMessage());
-		};
-		return null;
+				
+		
+		if(_employeeValidateService.isNameEmpty(employee.getEmployeeName())&&
+				_employeeValidateService.isSurnameEmpty(employee.getEmployeeSurname())&&	
+				_employeeValidateService.isNationalityIdEmpty(employee.getNationalIdentity())&&
+				_employeeValidateService.isBirthYearEmpty(employee.getYearOfBirth())&&
+				_employeeValidateService.isSurnameEmpty(employee.getEmployeeSurname())&&	
+				_employeeValidateService.isPasswordEmpty(employee.getPassword())&&
+				_employeeValidateService.isPasswordAgainEmpty(employee.getPasswordAgain())&&
+				_employeeValidateService.isEqualPasswords(employee.getPassword(),employee.getPasswordAgain())&&
+				_employeeCheckService.checkIfRealPerson(employee)&&
+				_emailCheckService.isEmailValid(employee.getEmail()))
+			
+		       
+				
+				
+				
+			
+		{
+			_emailVerificationService.sendVerificationEmail(employee.getEmail());
+			  this._employeeDao.save(employee);
+			  return new SuccessResult("Kayıt Başarılı");
+		}
+		else {
+			return new ErrorResult();
+		}
+        
+		 
+	
 	
 	}
 
