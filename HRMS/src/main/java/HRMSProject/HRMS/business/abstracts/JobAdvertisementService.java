@@ -11,4 +11,9 @@ import HRMSProject.HRMS.entities.concrete.JobAdvertisement;
 public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAll();
 	Result add(JobAdvertisement jobAdvertisement);
+	DataResult<List<JobAdvertisement>> getByIsActive();
+
+	DataResult<List<JobAdvertisement>> getByIsActiveTrueOrderByApplicationDeadlineDesc();
+
+	DataResult<List<JobAdvertisement>> getByIsActiveTrueAndEmployer_EmployerId(int id);
 }

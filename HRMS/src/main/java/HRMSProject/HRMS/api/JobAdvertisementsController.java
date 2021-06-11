@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import HRMSProject.HRMS.business.abstracts.JobAdvertisementService;
@@ -32,5 +33,24 @@ public DataResult<List<JobAdvertisement>> getAll()
 public Result add(@RequestBody JobAdvertisement jobAdvertisement)
 {
 	return this._jobAdvertisementService.add(jobAdvertisement);
-	};
+	
+}
+@GetMapping("/getbyisactive")
+public DataResult<List<JobAdvertisement>> getByIsActive()
+{
+	return this._jobAdvertisementService.getByIsActive();
+	
+}
+@GetMapping("/getbyapplicationdeadlineDesc")
+public DataResult<List<JobAdvertisement>> getByIsActiveTrueOrderByApplicationDeadlineDesc()
+{
+	return this._jobAdvertisementService.getByIsActiveTrueOrderByApplicationDeadlineDesc();
+	
+}
+@GetMapping("/getbyemployerid")
+public DataResult<List<JobAdvertisement>> getByIsActiveTrueAndEmployerId(@RequestParam int id)
+{
+	return this._jobAdvertisementService.getByIsActiveTrueAndEmployer_EmployerId(id);
+	
+}
 }
