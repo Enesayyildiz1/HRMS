@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 
 import HRMSProject.HRMS.business.abstracts.JobAdvertisementService;
 import HRMSProject.HRMS.core.utilities.results.DataResult;
+import HRMSProject.HRMS.core.utilities.results.Result;
 import HRMSProject.HRMS.core.utilities.results.SuccessDataResult;
+import HRMSProject.HRMS.core.utilities.results.SuccessResult;
 import HRMSProject.HRMS.dataAccess.abstracts.JobAdvertisementDao;
 import HRMSProject.HRMS.entities.concrete.JobAdvertisement;
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
 	private JobAdvertisementDao _jobAdvertisementDao;
+	
 @Autowired
 	public JobAdvertisementManager(JobAdvertisementDao _jobAdvertisementDao) {
 		super();
@@ -23,5 +26,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public DataResult<List<JobAdvertisement>> getAll() {
 		return new SuccessDataResult<List<JobAdvertisement>>(this._jobAdvertisementDao.findAll());
 		
+	}
+
+	@Override
+	public Result add(JobAdvertisement jobAdvertisement) {
+		  this._jobAdvertisementDao.save(jobAdvertisement);
+		  return new SuccessResult("İş ilanı başarıyla oluşturuldu");
 	}
 }

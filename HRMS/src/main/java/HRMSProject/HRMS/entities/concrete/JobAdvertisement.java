@@ -44,7 +44,7 @@ public class JobAdvertisement {
 	@Column(name="open_position_amount")
 	private String openPositionAmount;
 	@Column(name="activation_status")
-	private String activationStatus;
+	private boolean activationStatus;
 	@ManyToOne()
 	@JoinColumn(name=("job_title_id"))
 	private Position position;
