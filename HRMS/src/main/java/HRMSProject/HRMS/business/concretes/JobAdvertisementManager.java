@@ -54,4 +54,22 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 			
 			return new SuccessDataResult<List<JobAdvertisement>>(this._jobAdvertisementDao.findByIsActiveTrueAndEmployerId(id),"Başarılı");
 	}
+
+	@Override
+	public Result update(JobAdvertisement entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result delete(JobAdvertisement entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

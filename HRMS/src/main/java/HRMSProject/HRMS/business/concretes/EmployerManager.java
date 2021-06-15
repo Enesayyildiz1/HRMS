@@ -75,4 +75,22 @@ public class EmployerManager implements EmployerService{
 		}
 	}
 
+	@Override
+	public Result update(Employer entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Result delete(Employer entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<Employer> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

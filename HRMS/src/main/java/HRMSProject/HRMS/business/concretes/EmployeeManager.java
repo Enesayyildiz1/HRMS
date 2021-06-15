@@ -75,5 +75,20 @@ public class EmployeeManager implements EmployeeService{
 	
 	
 	}
+	@Override
+	public Result update(Employee entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Result delete(Employee entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public DataResult<Employee> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

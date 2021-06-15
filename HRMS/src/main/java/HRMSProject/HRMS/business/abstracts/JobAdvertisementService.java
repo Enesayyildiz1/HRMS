@@ -8,9 +8,8 @@ import HRMSProject.HRMS.entities.concrete.Employee;
 import HRMSProject.HRMS.entities.concrete.JobAdvertisement;
 
 
-public interface JobAdvertisementService {
-	DataResult<List<JobAdvertisement>> getAll();
-	Result add(JobAdvertisement jobAdvertisement);
+public interface JobAdvertisementService extends BaseEntityService<JobAdvertisement>{
+	
 	DataResult<List<JobAdvertisement>> getByIsActive();
 
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueOrderByApplicationDeadlineDesc();
