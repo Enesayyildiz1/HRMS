@@ -6,5 +6,5 @@ import HRMSProject.HRMS.entities.dtos.CvDtoForAllEntities;
 
 public interface CurriculumVitaeService extends BaseEntityService <CurriculumVitae>{
 	DataResult<CurriculumVitae> getByCandidateId(int candidateId);
-	DataResult<CvDtoForAllEntities> getCvDetailsByEmployeeId(int employeeId);
+	DataResult<CvDtoForAllEntities> getCvDetailByEmployeeId(int id);
 }

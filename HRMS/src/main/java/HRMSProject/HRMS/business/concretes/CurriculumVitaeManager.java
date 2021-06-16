@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 
 import HRMSProject.HRMS.business.abstracts.CurriculumVitaeService;
-
 import HRMSProject.HRMS.core.utilities.results.DataResult;
 import HRMSProject.HRMS.core.utilities.results.Result;
 import HRMSProject.HRMS.core.utilities.results.SuccessDataResult;
@@ -26,6 +25,10 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		this.cvDao = cvDao;
 	
 	}
+
+
+	
+
 
 	
 	@Override
@@ -58,17 +61,31 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 		return null;
 	}
 
-	@Override
-	public DataResult<CvDtoForAllEntities> getCvDetailsByEmployeeId(int employeeId) {
-		// TODO Auto-generated method stub
-		return new  SuccessDataResult<CvDtoForAllEntities>(cvDao.getDtosByEmployee_Id(employeeId));
-	}
+	
+	
 
 
 	@Override
 	public DataResult<CurriculumVitae> getByCandidateId(int candidateId) {
 		// TODO Auto-generated method stub
 		return new SuccessDataResult<CurriculumVitae>(cvDao.getByEmployee_Id(candidateId));
+	}
+
+
+	@Override
+	public DataResult<CvDtoForAllEntities> getCvDetailByEmployeeId(int id) {
+		CurriculumVitae cv=getByCandidateId(id).getData();
+		CvDtoForAllEntities cvDetail=new CvDtoForAllEntities();
+		cvDetail.setId(cv.getId());
+		cvDetail.setCreationDate(cv.getCreationDate());
+		cvDetail.setEmployee(cv.getEmployee());
+		cvDetail.setCoverLetter(cv.getCoverLetter());
+		cvDetail.setEducations(cv.getEducations());
+		cvDetail.setLanguages(cv.getLanguageLevels());
+		cvDetail.setExperiences(cv.getExperiences());
+		cvDetail.setSkills(cv.getSkills());
+		cvDetail.setLinks(cv.getLinks());
+		return new SuccessDataResult<CvDtoForAllEntities>(cvDetail);
 	}
 
 }

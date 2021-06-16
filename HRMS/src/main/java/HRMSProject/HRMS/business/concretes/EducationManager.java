@@ -2,11 +2,14 @@ package HRMSProject.HRMS.business.concretes;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import HRMSProject.HRMS.business.abstracts.EducationService;
 import HRMSProject.HRMS.core.utilities.results.DataResult;
 import HRMSProject.HRMS.core.utilities.results.Result;
 import HRMSProject.HRMS.entities.concrete.Education;
 
+@Service
 public class EducationManager implements EducationService{
 
 	@Override

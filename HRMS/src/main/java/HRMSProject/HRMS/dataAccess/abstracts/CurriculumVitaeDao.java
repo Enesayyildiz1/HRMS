@@ -9,6 +9,6 @@ import HRMSProject.HRMS.entities.dtos.CvDtoForAllEntities;
 
 public interface CurriculumVitaeDao  extends JpaRepository<CurriculumVitae,Integer>{
 	CurriculumVitae getByEmployee_Id(int employeeId);
-	@Query("Select new HRMSProject.HRMS.entities.dtos.CvDtoForAllEntities(cv.id,cv.creationDate,cv.employee,cv.coverLetter,e.schoolName) From Education e Inner Join e.curriculumVitae cv")                                                            
-	CvDtoForAllEntities getDtosByEmployee_Id(int employeeId);
+	                                                            
+	
 }

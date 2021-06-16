@@ -28,8 +28,9 @@ public class CvDtoForAllEntities {
 
 	private CoverLetter coverLetter;
 
-	private String educationName;
-
-	
-
+	private List<Education> educations;
+	private List<LanguageLevel> languages;
+	private List<Skill> skills;
+	private List<Link> links;
+	private List<Experience> experiences;
 }

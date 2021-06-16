@@ -40,7 +40,7 @@ public class CurriculumVitae {
 	@JoinColumn(name = "employee_id")
 	private Employee employee;
 
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name = "cover_letter_id")
 	private CoverLetter coverLetter;
