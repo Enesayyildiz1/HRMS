@@ -87,8 +87,7 @@ public class EmployeeManager implements EmployeeService{
 	}
 	@Override
 	public DataResult<Employee> getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return new SuccessDataResult<Employee>(this._employeeDao.getById(id));
 	}
 
 }

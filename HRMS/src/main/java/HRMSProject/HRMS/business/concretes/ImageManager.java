@@ -70,13 +70,14 @@ public class ImageManager implements ImageService
 		image.setEmployee(employeeService.getById(userId).getData());
 		image.setUrl(uploadImage.get("url").toString());
 
-		return add(image);
+		this.imageDao.save(image);
+		return new SuccessResult();
 	}
 
 
 	@Override
 	public DataResult<Image> getByUserId(int userId) {
-		return new SuccessDataResult<Image>(imageDao.getByEmployee_Id(userId));
+		return new SuccessDataResult<Image>(this.imageDao.getByEmployee_Id(userId));
 	}
 
 }
