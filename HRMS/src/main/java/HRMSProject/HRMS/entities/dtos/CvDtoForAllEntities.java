@@ -3,6 +3,7 @@ package HRMSProject.HRMS.entities.dtos;
 import java.time.LocalDate;
 import java.util.List;
 
+import HRMSProject.HRMS.entities.concrete.Candidate;
 import HRMSProject.HRMS.entities.concrete.CoverLetter;
 import HRMSProject.HRMS.entities.concrete.Education;
 import HRMSProject.HRMS.entities.concrete.Employee;
@@ -24,7 +25,7 @@ public class CvDtoForAllEntities {
 
 	private LocalDate creationDate;
 
-	private Employee employee;
+	private Candidate candidate;
 
 	private CoverLetter coverLetter;
 

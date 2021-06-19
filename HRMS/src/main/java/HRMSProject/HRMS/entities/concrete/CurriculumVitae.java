@@ -37,8 +37,8 @@ public class CurriculumVitae {
 	private LocalDate creationDate;
 
 	@ManyToOne
-	@JoinColumn(name = "employee_id")
-	private Employee employee;
+	@JoinColumn(name = "candidate_id")
+	private Candidate candidate;
 
 
 	@ManyToOne

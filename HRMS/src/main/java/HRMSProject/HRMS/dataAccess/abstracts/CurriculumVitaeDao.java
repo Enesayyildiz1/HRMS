@@ -8,7 +8,7 @@ import HRMSProject.HRMS.entities.dtos.CvDtoForAllEntities;
 
 
 public interface CurriculumVitaeDao  extends JpaRepository<CurriculumVitae,Integer>{
-	CurriculumVitae getByEmployee_Id(int employeeId);
+	CurriculumVitae getByCandidate_Id(int candidateId);
 	                                                            
 	
 }

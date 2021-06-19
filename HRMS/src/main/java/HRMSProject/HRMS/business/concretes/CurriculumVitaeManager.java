@@ -68,17 +68,17 @@ public class CurriculumVitaeManager implements CurriculumVitaeService{
 	@Override
 	public DataResult<CurriculumVitae> getByCandidateId(int candidateId) {
 		// TODO Auto-generated method stub
-		return new SuccessDataResult<CurriculumVitae>(cvDao.getByEmployee_Id(candidateId));
+		return new SuccessDataResult<CurriculumVitae>(cvDao.getByCandidate_Id(candidateId));
 	}
 
 
 	@Override
-	public DataResult<CvDtoForAllEntities> getCvDetailByEmployeeId(int id) {
+	public DataResult<CvDtoForAllEntities> getCvDetailByCandidateId(int id) {
 		CurriculumVitae cv=getByCandidateId(id).getData();
 		CvDtoForAllEntities cvDetail=new CvDtoForAllEntities();
 		cvDetail.setId(cv.getId());
 		cvDetail.setCreationDate(cv.getCreationDate());
-		cvDetail.setEmployee(cv.getEmployee());
+		cvDetail.setCandidate(cv.getCandidate());
 		cvDetail.setCoverLetter(cv.getCoverLetter());
 		cvDetail.setEducations(cv.getEducations());
 		cvDetail.setLanguages(cv.getLanguageLevels());

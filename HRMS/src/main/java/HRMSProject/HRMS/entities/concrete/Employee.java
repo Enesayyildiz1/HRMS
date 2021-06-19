@@ -38,8 +38,5 @@ public class Employee extends User{
 	@Column(name="year_of_birth")
 	private String yearOfBirth;
 	 
-		@JsonIgnore
-		@OneToMany(mappedBy = "employee")
-		private List<CurriculumVitae> curriculumVitae;
 	
 }
